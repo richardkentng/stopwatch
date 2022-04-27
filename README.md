@@ -1,4 +1,4 @@
-#[Stopwatch](https://stopwatches.netlify.app/)
+# [Stopwatch](https://stopwatches.netlify.app/)
 
 ## Description
 
