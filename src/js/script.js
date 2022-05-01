@@ -1,44 +1,83 @@
-console.log("sanity check");
+const stopwatches = [
+  {
+    id: "349853045",
+    intervalId: null,
+    startTime: null,
+    pauseTime: null,
+    elapsedPauseTime: 0,
+  },
+  {
+    id: "448945789",
+    intervalId: null,
+    startTime: null,
+    pauseTime: null,
+    elapsedPauseTime: 0,
+  },
+  {
+    id: "548945789",
+    intervalId: null,
+    startTime: null,
+    pauseTime: null,
+    elapsedPauseTime: 0,
+  },
+];
 
-const toggleBtn = document.body.querySelector(".toggle-btn");
-const resetBtn = document.body.querySelector(".reset-btn");
-const stopwatchEl = document.body.querySelector(".stopwatch");
-let stopwatchId = null;
-let startTime = null;
-let pauseTime = null;
-let elapsedPauseTime = 0;
+stopwatches.forEach((stopwatch) => {
+  //create html for current stopwatch
+  const div = document.createElement("div");
+  div.classList.add("stopwatch");
 
-toggleBtn.onclick = onStart;
-resetBtn.onclick = onReset;
+  const displayEl = document.createElement("p");
+  displayEl.textContent = "00:00:00:00";
+  div.appendChild(displayEl);
+
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "start / stop";
+  toggleBtn.id = stopwatch.id;
+  toggleBtn.onclick = onStart;
+  div.appendChild(toggleBtn);
+
+  const resetBtn = document.createElement("button");
+  resetBtn.textContent = "reset";
+  resetBtn.id = stopwatch.id;
+  resetBtn.onclick = onReset;
+  div.appendChild(resetBtn);
+
+  document.body.appendChild(div);
+
+  stopwatch.displayEl = displayEl;
+  stopwatch.toggleBtn = toggleBtn;
+});
 
 function onStart() {
-  toggleBtn.onclick = onStop;
-
-  if (startTime === null) startTime = Date.now();
-  if (pauseTime) {
-    elapsedPauseTime += Date.now() - pauseTime;
-    pauseTime = null;
+  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  sw.toggleBtn.onclick = onStop;
+  if (sw.startTime === null) sw.startTime = Date.now();
+  if (sw.pauseTime) {
+    sw.elapsedPauseTime += Date.now() - sw.pauseTime;
+    sw.pauseTime = null;
   }
-
-  stopwatchId = setInterval(() => {
-    const elapsedTime = Date.now() - startTime - elapsedPauseTime;
-    stopwatchEl.textContent = formatElapsedTime(elapsedTime);
+  sw.intervalId = setInterval(() => {
+    const elapsedTime = Date.now() - sw.startTime - sw.elapsedPauseTime;
+    sw.displayEl.textContent = formatElapsedTime(elapsedTime);
   }, 20);
 }
 
 function onStop() {
-  clearInterval(stopwatchId);
-  toggleBtn.onclick = onStart;
-  pauseTime = Date.now();
+  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  clearInterval(sw.intervalId);
+  sw.toggleBtn.onclick = onStart;
+  sw.pauseTime = Date.now();
 }
 
 function onReset() {
-  clearInterval(stopwatchId);
-  toggleBtn.onclick = onStart;
-  startTime = null;
-  pauseTime = null;
-  elapsedPauseTime = 0;
-  stopwatchEl.textContent = "00:00:00.00";
+  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  clearInterval(sw.intervalId);
+  sw.toggleBtn.onclick = onStart;
+  sw.startTime = null;
+  sw.pauseTime = null;
+  sw.elapsedPauseTime = 0;
+  sw.displayEl.textContent = "00:00:00.00";
 }
 
 function formatElapsedTime(milliseconds) {
