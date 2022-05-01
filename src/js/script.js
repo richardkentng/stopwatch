@@ -8,11 +8,11 @@ let startTime = null;
 let pauseTime = null;
 let elapsedPauseTime = 0;
 
-toggleBtn.addEventListener("click", onStart);
-resetBtn.addEventListener("click", onReset);
+toggleBtn.onclick = onStart;
+resetBtn.onclick = onReset;
 
 function onStart() {
-  toggleBtn.removeEventListener("click", onStart);
+  toggleBtn.onclick = onStop;
 
   if (startTime === null) startTime = Date.now();
   if (pauseTime) {
@@ -22,36 +22,26 @@ function onStart() {
 
   stopwatchId = setInterval(() => {
     const elapsedTime = Date.now() - startTime - elapsedPauseTime;
-    stopwatchEl.textContent = formatMillisecondsToTime(elapsedTime);
+    stopwatchEl.textContent = formatElapsedTime(elapsedTime);
   }, 20);
-
-  toggleBtn.addEventListener("click", onStop);
-  toggleBtn.textContent = "stop";
-
-  resetBtn.classList.add("hide");
 }
 
 function onStop() {
-  toggleBtn.removeEventListener("click", onStop);
-
   clearInterval(stopwatchId);
+  toggleBtn.onclick = onStart;
   pauseTime = Date.now();
-
-  toggleBtn.addEventListener("click", onStart);
-  toggleBtn.textContent = "start";
-
-  resetBtn.classList.remove("hide");
 }
 
 function onReset() {
+  clearInterval(stopwatchId);
+  toggleBtn.onclick = onStart;
   startTime = null;
   pauseTime = null;
   elapsedPauseTime = 0;
   stopwatchEl.textContent = "00:00:00.00";
-  resetBtn.classList.add("hide");
 }
 
-function formatMillisecondsToTime(milliseconds) {
+function formatElapsedTime(milliseconds) {
   const hours = normalizeZeros(Math.floor(milliseconds / 3600000));
   let remTime = milliseconds % 3600000;
   const minutes = normalizeZeros(Math.floor(remTime / 60000));
