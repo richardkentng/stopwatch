@@ -8,3 +8,4 @@ I'm testing my Javascript by building a basic stopwatch.
 
 - make two stopwatches without making code repetitive
 - be able to create as many stopwatches as desired, and name them
+- store stopwatches in local storage
