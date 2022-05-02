@@ -1,28 +1,25 @@
-const stopwatches = [
-  {
-    id: "349853045",
+const stopwatches = {
+  349853045: {
     intervalId: null,
     startTime: null,
     pauseTime: null,
     elapsedPauseTime: 0,
   },
-  {
-    id: "448945789",
+  448945789: {
     intervalId: null,
     startTime: null,
     pauseTime: null,
     elapsedPauseTime: 0,
   },
-  {
-    id: "548945789",
+  548945789: {
     intervalId: null,
     startTime: null,
     pauseTime: null,
     elapsedPauseTime: 0,
   },
-];
+};
 
-stopwatches.forEach((stopwatch) => {
+for (let id in stopwatches) {
   //create html for current stopwatch
   const div = document.createElement("div");
   div.classList.add("stopwatch");
@@ -33,24 +30,24 @@ stopwatches.forEach((stopwatch) => {
 
   const toggleBtn = document.createElement("button");
   toggleBtn.textContent = "start / stop";
-  toggleBtn.id = stopwatch.id;
+  toggleBtn.id = id;
   toggleBtn.onclick = onStart;
   div.appendChild(toggleBtn);
 
   const resetBtn = document.createElement("button");
   resetBtn.textContent = "reset";
-  resetBtn.id = stopwatch.id;
+  resetBtn.id = id;
   resetBtn.onclick = onReset;
   div.appendChild(resetBtn);
 
   document.body.appendChild(div);
 
-  stopwatch.displayEl = displayEl;
-  stopwatch.toggleBtn = toggleBtn;
-});
+  stopwatches[id].displayEl = displayEl;
+  stopwatches[id].toggleBtn = toggleBtn;
+}
 
 function onStart() {
-  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  const sw = stopwatches[this.id]; //'sw' stands for 'stopwatch'
   sw.toggleBtn.onclick = onStop;
   if (sw.startTime === null) sw.startTime = Date.now();
   if (sw.pauseTime) {
@@ -64,14 +61,14 @@ function onStart() {
 }
 
 function onStop() {
-  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  const sw = stopwatches[this.id]; //'sw' stands for 'stopwatch'
   clearInterval(sw.intervalId);
   sw.toggleBtn.onclick = onStart;
   sw.pauseTime = Date.now();
 }
 
 function onReset() {
-  const sw = stopwatches.find((stopwatch) => stopwatch.id === this.id); //'sw' stands for 'stopwatch'
+  const sw = stopwatches[this.id]; //'sw' stands for 'stopwatch'
   clearInterval(sw.intervalId);
   sw.toggleBtn.onclick = onStart;
   sw.startTime = null;
