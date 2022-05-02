@@ -1,4 +1,4 @@
-# [Stopwatch](https://stopwatches.netlify.app/)
+# [Stopwatches](https://stopwatches.netlify.app/)
 
 ![thumbnail](./github_images/v3.png)
 
