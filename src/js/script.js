@@ -1,25 +1,28 @@
-const stopwatches = {
-  349853045: {
-    intervalId: null,
-    startTime: null,
-    pauseTime: null,
-    elapsedPauseTime: 0,
-  },
-  448945789: {
-    intervalId: null,
-    startTime: null,
-    pauseTime: null,
-    elapsedPauseTime: 0,
-  },
-  548945789: {
-    intervalId: null,
-    startTime: null,
-    pauseTime: null,
-    elapsedPauseTime: 0,
-  },
-};
+const stopwatches = {};
 
-for (let id in stopwatches) {
+const addBtn = document.body.querySelector(".add-btn");
+addBtn.onclick = onAdd;
+addBtn.click();
+
+function onAdd() {
+  const id = generateId();
+  const elements = constructStopwatch(id); //returns { toggleBtn, displayEl }
+  stopwatches[id] = Object.assign(
+    {
+      intervalId: null,
+      startTime: null,
+      pauseTime: null,
+      elapsedPauseTime: 0,
+    },
+    elements
+  );
+  //prettier-ignore
+  function generateId() {
+    return "a" + Math.random().toString().replace(/[^0-9]/g, "")
+  }
+}
+
+function constructStopwatch(id) {
   //create html for current stopwatch
   const div = document.createElement("div");
   div.classList.add("stopwatch");
@@ -42,8 +45,7 @@ for (let id in stopwatches) {
 
   document.body.appendChild(div);
 
-  stopwatches[id].displayEl = displayEl;
-  stopwatches[id].toggleBtn = toggleBtn;
+  return { toggleBtn, displayEl };
 }
 
 function onStart() {
