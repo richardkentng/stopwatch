@@ -1,11 +1,34 @@
 # [Stopwatch](https://stopwatches.netlify.app/)
 
+![thumbnail](./github_images/v3.png)
+
 ## Description
 
-I'm testing my Javascript by building a basic stopwatch.
+Click to add as many stopwatches as you like!
 
-## Next Steps
+## Technologies
 
-- make two stopwatches without making code repetitive
-- be able to create as many stopwatches as desired, and name them
-- store stopwatches in local storage
+HTML, CSS, JavaScript
+
+## User Stories
+
+- a user can delete stopwatches
+- a user can name stopwatches
+- a user can refresh the page and still see stopwatches (local storage)
+- change displayed elapsed time format
+- ~~a user can click a button to create as many stopwatches as desired~~
+
+## Evolution
+
+![version 1](./github_images/v1.png)
+
+- single stopwatch
+- hard-coded HTML
+
+![version 2](./github_images/v2.png)
+
+- dynamically generated HTML based on array of stopwatch objects
+
+![version 3](./github_images/v3.png)
+
+- click to create desired amount of stopwatches
