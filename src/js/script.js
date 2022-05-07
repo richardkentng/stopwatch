@@ -43,7 +43,7 @@ function constructStopwatch(id) {
   resetBtn.onclick = onReset;
   div.appendChild(resetBtn);
 
-  document.body.appendChild(div);
+  document.querySelector(".stopwatches").appendChild(div);
 
   return { toggleBtn, displayEl };
 }
