@@ -1,17 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: rgb(57, 68, 69);
+}
+
 body {
   font-family: "Poppins", sans-serif;
-  background-color: lightblue;
+  background-color: rgb(127, 148, 150);
+  padding: 10px;
+}
+
+button {
+  background-color: #ddd;
+  padding: 0.2em 0.4em;
+  border: solid black 1px;
+  border-radius: 0.2em;
+}
+
+button:hover {
+  filter: brightness(0.95);
 }
 
 .add-btn {
+  background-color: #fff;
   margin-bottom: 1rem;
 }
 
 .stopwatch {
   display: inline-block;
-  padding: 0.3em;
+  text-align: center;
+  background-color: #eee;
+  padding: 0.6em;
   border: solid black 1px;
   border-radius: 0.3em;
+  margin: 0.2em;
 }
