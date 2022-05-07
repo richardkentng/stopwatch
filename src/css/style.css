@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
+:root {
+  --dark-text: rgb(45, 54, 55);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,14 +11,14 @@
 }
 
 h1 {
+  color: var(--dark-text);
   margin-bottom: 1rem;
-  color: rgb(45, 54, 55);
 }
 
 body {
   font-family: "Poppins", sans-serif;
   background-color: rgb(127, 148, 150);
-  padding: 10px;
+  padding: 2rem;
 }
 
 button {
@@ -23,7 +27,6 @@ button {
   border: solid black 1px;
   border-radius: 0.2em;
 }
-
 button:hover {
   filter: brightness(0.95);
 }
@@ -41,4 +44,19 @@ button:hover {
   border: solid black 1px;
   border-radius: 0.3em;
   margin: 0.2em;
+}
+
+hr {
+  border: none;
+  border-bottom: solid 1px var(--dark-text);
+  margin-top: 1rem;
+}
+
+.github-link {
+  color: var(--dark-text);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.github-link:hover {
+  text-decoration: underline;
 }
