@@ -1,6 +1,6 @@
 # [Stopwatches](https://stopwatches.netlify.app/)
 
-![thumbnail](./github_images/v3.png)
+![thumbnail](./github_images/v4.png)
 
 ## Description
 
@@ -32,3 +32,7 @@ HTML, CSS, JavaScript
 ![version 3](./github_images/v3.png)
 
 - click to create desired amount of stopwatches
+
+![version 4](./github_images/v4.png)
+
+- restyled
