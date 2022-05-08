@@ -123,7 +123,7 @@ function formatElapsedTime(milliseconds) {
   remTime = milliseconds % 60000;
   const seconds = normalizeZeros(Math.floor(remTime / 1000));
   remTime = milliseconds % 1000;
-  const partialSecond = normalizeZeros(Math.round((remTime / 1000) * 100));
+  const partialSecond = normalizeZeros(Math.round(remTime / 10));
   return `${hours}:${minutes}:${seconds}.${partialSecond}`;
 
   function normalizeZeros(num) {
