@@ -28,35 +28,48 @@ if (Object.keys(stopwatches).length) {
 
 function onAdd() {
   const id = generateId();
-  constructStopwatch(id); //create html for stopwatch
 
-  //save default stopwatch data to local storage
+  //create and save a stopwatch to local storage
   const stopwatches = getStopwatches();
   stopwatches[id] = defaultStopwatch;
   setStopwatches(stopwatches);
+
+  constructStopwatch(id); //create html for stopwatch
 }
 
 function constructStopwatch(id) {
   //create html for current stopwatch
   const div = document.createElement("div");
   div.classList.add("stopwatch");
+  div.id = id;
   document.querySelector(".stopwatches").appendChild(div);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "X";
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.id = id;
+  deleteBtn.onclick = onDelete;
+  div.appendChild(deleteBtn);
+
+  const contentDiv = document.createElement("div");
+  contentDiv.classList.add("content");
+  div.appendChild(contentDiv);
 
   const displayEl = document.createElement("p");
   displayEl.textContent = "00:00:00:00";
-  div.appendChild(displayEl);
+  contentDiv.appendChild(displayEl);
 
   const toggleBtn = document.createElement("button");
   toggleBtn.textContent = "start / stop";
   toggleBtn.id = id;
   toggleBtn.onclick = onStart;
-  div.appendChild(toggleBtn);
+  contentDiv.appendChild(toggleBtn);
 
   const resetBtn = document.createElement("button");
   resetBtn.textContent = "reset";
   resetBtn.id = id;
   resetBtn.onclick = onReset;
-  div.appendChild(resetBtn);
+  contentDiv.appendChild(resetBtn);
 
   displayElAndToggleBtn[id] = { displayEl, toggleBtn };
 }
@@ -114,6 +127,17 @@ function onReset() {
   el.toggleBtn.onclick = onStart;
   el.displayEl.textContent = "00:00:00.00";
   updateStopwatch(this.id);
+}
+
+function onDelete() {
+  focusStopwatch(this.id);
+  clearInterval(sw.intervalId);
+  //remove stopwatch from local storage
+  const stopwatches = getStopwatches();
+  delete stopwatches[this.id];
+  setStopwatches(stopwatches);
+  //remove stopwatch from html
+  document.querySelector(`.stopwatch#${this.id}`).remove();
 }
 
 function formatElapsedTime(milliseconds) {
