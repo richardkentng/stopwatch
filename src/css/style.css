@@ -38,7 +38,7 @@ button:hover {
 
 .stopwatch {
   display: inline-block;
-  text-align: center;
+  text-align: left;
   background-color: #eee;
   padding: 0.6em;
   border: solid black 1px;
