@@ -13,14 +13,16 @@ const defaultStopwatch = {
 };
 
 const stopwatches = getStopwatches();
+//if stopwatch data is detected in local storage
 if (Object.keys(stopwatches).length) {
-  //construct stopwatches from local storage
+  //construct stopwatch html from data
   for (let id in stopwatches) {
     constructStopwatch(id);
     //Display the elapsed time once, or continuously update it
     updateTimeOrStartInterval(id);
   }
 } else {
+  //add one stopwatch
   addBtn.click();
 }
 
