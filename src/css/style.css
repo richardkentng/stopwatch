@@ -40,10 +40,20 @@ button:hover {
   display: inline-block;
   text-align: left;
   background-color: #eee;
-  padding: 0.6em;
   border: solid black 1px;
   border-radius: 0.3em;
   margin: 0.2em;
+}
+
+.stopwatch > .delete-btn {
+  background-color: inherit;
+  border: none;
+  display: block;
+  margin-left: auto;
+}
+
+.stopwatch > .content {
+  padding: 0 0.6em 0.6em 0.6em;
 }
 
 hr {
