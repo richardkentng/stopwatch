@@ -1,7 +1,7 @@
 const addBtn = document.body.querySelector(".add-btn");
 addBtn.onclick = onAdd;
 
-const elements = {}; //stores two elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn}, ...}
+const elements = {}; //stores three elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput}, ...}
 let sw = null; //sw stands for the stopwatch that is focused ('focus' as defined here, occurs when any button on a stopwatch is clicked)
 let el = null; //el stands for the elements that are focused (consists of elements: displayEl and toggleBtn)
 
@@ -79,7 +79,7 @@ function constructStopwatch(stopwatch) {
   resetBtn.onclick = onReset;
   contentDiv.appendChild(resetBtn);
 
-  elements[stopwatch.id] = { displayEl, toggleBtn };
+  elements[stopwatch.id] = { displayEl, toggleBtn, nameInput };
 }
 
 function updateTimeOrStartInterval(id) {
@@ -131,7 +131,7 @@ function onStop() {
 function onReset() {
   focusStopwatch(this.id);
   clearInterval(sw.intervalId);
-  sw = defaultStopwatch;
+  sw = { ...defaultStopwatch, name: el.nameInput.value };
   el.toggleBtn.onclick = onStart;
   el.displayEl.textContent = "00:00:00.00";
   updateStopwatch(this.id);
