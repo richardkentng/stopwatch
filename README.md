@@ -1,12 +1,10 @@
 # [Stopwatches](https://stopwatches.netlify.app/)
 
-![thumbnail](./github_images/v5.png)
+![thumbnail](./github_images/v6.png)
 
 ## Description
 
-A stopwatch keeps track of how long a task takes. It starts from 0 and counts upwards...from seconds to minutes, minutes to hours, etc. Just click to add as many stopwatches as you like! Multiple stopwatches can be run simultaneously.
-
-Now, why would you need more that one stopwatch? I'm glad you asked! A single stopwatch is good for measuring how long you are taking on ONE task. However, what if you wanted to track your time investments on different tasks, one after the other, or maybe you want to track how long that pizza guy will take to get to your house WHILE you track how long you are watching television? Although inconvenient, I suppose you could write down the duration of task1 and restart the clock for task2, but this would not even work if you are tracking two things at once. However, the advantage of having multiple stopwatches is that you don't have to write anything down or overwrite an existing stopwatch...just create an additional stopwatch! Your old stopwatches will remain to show you how long you spent on previous tasks. Also, if you wanted to spend more time on a task you did earlier, you could continue that particular stopwatch, no problem! I personally use multiple stopwatches to track how long I spend on all major tasks throughout the day, including my breaks.
+Keep track of how long all your tasks are taking with multiple stopwatches! Just click to add a new stopwatch. Stopwatches can be run simulaneously. Each stopwatch can be given a unique name too!
 
 ## Technologies
 
@@ -74,3 +72,7 @@ A stopwatch needs certain variables to work with...
 ![version 5](./github_images/v5.png)
 
 - adds X button to delete a stopwatch
+
+![version 6](./github_images/v6.png)
+
+- name-able stopwatches
