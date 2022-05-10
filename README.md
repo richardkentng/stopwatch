@@ -45,6 +45,7 @@ A stopwatch needs certain variables to work with...
 - [x] a user can delete stopwatches
 - [ ] a user can give each stopwatch a name
 - [ ] change display format from 00:00:00 to 00h 00m 00s
+- [ ] a user can click a drag a stopwatch to reorder it
 
 ## Thoughts
 
