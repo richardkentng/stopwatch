@@ -64,7 +64,7 @@ function constructStopwatch(stopwatch) {
   div.appendChild(contentDiv);
 
   const displayEl = document.createElement("p");
-  displayEl.textContent = "...";
+  displayEl.textContent = "n/a";
   contentDiv.appendChild(displayEl);
 
   const toggleBtn = document.createElement("button");
@@ -87,21 +87,9 @@ function updateTimeOrStartInterval(id) {
   focusStopwatch(id);
   //if stopwatch was ever started since creation or since a reset
   if (sw.startTime) {
-    // if stopwatch was paused
-    if (sw.pauseTime) {
-      //display elapsed time
-      const elapsedTime =
-        Date.now() -
-        sw.startTime -
-        sw.elapsedPauseTime -
-        (Date.now() - sw.pauseTime);
-      el.displayEl.textContent = formatElapsedTime(elapsedTime);
-    } else {
-      //since stopwatch was not paused, continue stopwatch interval
-      el.toggleBtn.click();
-    }
-  } else {
-    el.displayEl.textContent = "0";
+    updateDisplayWithElapsedTime(); //uses data from focused stopwatch
+    // if stopwatch was not paused (still ongoing), then click to start the setInterval
+    if (!sw.pauseTime) el.toggleBtn.click();
   }
 }
 
@@ -113,12 +101,17 @@ function onStart() {
     sw.elapsedPauseTime += Date.now() - sw.pauseTime;
     sw.pauseTime = null;
   }
-  const [staticSw, staticEl] = [sw, el]; //this prevents the update interval from focusing the wrong stopwatch when 'sw' or 'el' are overwritten<--this occurs when another stopwatch is focused
-  sw.intervalId = setInterval(() => {
-    const elapsedTime =
-      Date.now() - staticSw.startTime - staticSw.elapsedPauseTime;
-    staticEl.displayEl.textContent = formatElapsedTime(elapsedTime);
-  }, 1000);
+  updateDisplayWithElapsedTime(); //this will immediately update displayed elapsed time instead of waiting for interval to start. <--benefits noticeable when a stopwatch displaying 'n/a', upon being started, immediately displays '0s'
+  const { displayEl, startTime, elapsedPauseTime } = { ...sw, ...el }; //this prevents the setInterval from focusing the wrong stopwatch when the global variables 'sw' and 'el' are overwritten
+  sw.intervalId = setInterval(
+    () =>
+      updateDisplayWithElapsedTime({
+        displayEl,
+        startTime,
+        elapsedPauseTime,
+      }),
+    1000
+  );
   updateStopwatch(this.id);
 }
 
@@ -135,7 +128,7 @@ function onReset() {
   clearInterval(sw.intervalId);
   sw = { ...defaultStopwatch, name: el.nameInput.value };
   el.toggleBtn.onclick = onStart;
-  el.displayEl.textContent = "0";
+  el.displayEl.textContent = "n/a";
   updateStopwatch(this.id);
 }
 
@@ -174,7 +167,18 @@ function formatElapsedTime(milliseconds) {
     if (duration !== 0) display = true;
     if (display) formattedResult += ` ${duration}${unit}`;
   });
-  return formattedResult.trimStart();
+  formattedResult = formattedResult.trimStart();
+  return formattedResult ? formattedResult : "0s";
+}
+
+function updateDisplayWithElapsedTime(
+  { displayEl, startTime, elapsedPauseTime, pauseTime } = { ...sw, ...el }
+) {
+  let elapsedTime = Date.now() - startTime - elapsedPauseTime;
+  elapsedTime = pauseTime
+    ? elapsedTime - (Date.now() - pauseTime)
+    : elapsedTime;
+  displayEl.textContent = formatElapsedTime(elapsedTime);
 }
 
 function focusStopwatch(id) {
