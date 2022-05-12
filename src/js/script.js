@@ -64,7 +64,7 @@ function constructStopwatch(stopwatch) {
   div.appendChild(contentDiv);
 
   const displayEl = document.createElement("p");
-  displayEl.textContent = "00:00:00:00";
+  displayEl.textContent = "...";
   contentDiv.appendChild(displayEl);
 
   const toggleBtn = document.createElement("button");
@@ -100,6 +100,8 @@ function updateTimeOrStartInterval(id) {
       //since stopwatch was not paused, continue stopwatch interval
       el.toggleBtn.click();
     }
+  } else {
+    el.displayEl.textContent = "0";
   }
 }
 
@@ -116,7 +118,7 @@ function onStart() {
     const elapsedTime =
       Date.now() - staticSw.startTime - staticSw.elapsedPauseTime;
     staticEl.displayEl.textContent = formatElapsedTime(elapsedTime);
-  }, 20);
+  }, 1000);
   updateStopwatch(this.id);
 }
 
@@ -133,7 +135,7 @@ function onReset() {
   clearInterval(sw.intervalId);
   sw = { ...defaultStopwatch, name: el.nameInput.value };
   el.toggleBtn.onclick = onStart;
-  el.displayEl.textContent = "00:00:00.00";
+  el.displayEl.textContent = "0";
   updateStopwatch(this.id);
 }
 
@@ -156,19 +158,23 @@ function onNameInput() {
 }
 
 function formatElapsedTime(milliseconds) {
-  const hours = normalizeZeros(Math.floor(milliseconds / 3600000));
+  const hours = Math.floor(milliseconds / 3600000);
   let remTime = milliseconds % 3600000;
-  const minutes = normalizeZeros(Math.floor(remTime / 60000));
+  const minutes = Math.floor(remTime / 60000);
   remTime = milliseconds % 60000;
-  const seconds = normalizeZeros(Math.floor(remTime / 1000));
-  remTime = milliseconds % 1000;
-  const partialSecond = normalizeZeros(Math.round(remTime / 10));
-  return `${hours}:${minutes}:${seconds}.${partialSecond}`;
+  const seconds = Math.floor(remTime / 1000);
 
-  function normalizeZeros(num) {
-    const str = num.toString();
-    return str.length === 1 ? `0${str}` : str;
-  }
+  let formattedResult = "";
+  let display = false;
+  [
+    [hours, "h"],
+    [minutes, "m"],
+    [seconds, "s"],
+  ].forEach(([duration, unit]) => {
+    if (duration !== 0) display = true;
+    if (display) formattedResult += ` ${duration}${unit}`;
+  });
+  return formattedResult.trimStart();
 }
 
 function focusStopwatch(id) {
