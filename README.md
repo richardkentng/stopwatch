@@ -1,6 +1,6 @@
 # [Stopwatches](https://stopwatches.netlify.app/)
 
-![thumbnail](./github_images/v6.png)
+![thumbnail](./github_images/v7.png)
 
 ## Description
 
@@ -76,3 +76,7 @@ A stopwatch needs certain variables to work with...
 ![version 6](./github_images/v6.png)
 
 - name-able stopwatches
+
+![version 7](./github_images/v7.png)
+
+- changed display format for increased readability
