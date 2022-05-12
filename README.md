@@ -41,8 +41,8 @@ A stopwatch needs certain variables to work with...
 - [x] a user can click a button to create as many stopwatches as desired
 - [x] a user can refresh the page and still see stopwatches (local storage)
 - [x] a user can delete stopwatches
-- [ ] a user can give each stopwatch a name
-- [ ] change display format from 00:00:00 to 00h 00m 00s
+- [x] a user can give each stopwatch a name
+- [ ] a user can check a box to see milliseconds (eg. 56.4s instead of 56s)
 - [ ] a user can click a drag a stopwatch to reorder it
 
 ## Thoughts
