@@ -45,19 +45,23 @@ function constructStopwatch(stopwatch) {
   div.id = stopwatch.id;
   document.querySelector(".stopwatches").appendChild(div);
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "X";
-  deleteBtn.classList.add("delete-btn");
-  deleteBtn.id = stopwatch.id;
-  deleteBtn.onclick = onDelete;
-  div.appendChild(deleteBtn);
+  const topRow = document.createElement("div");
+  topRow.classList.add("top-row");
+  div.appendChild(topRow);
 
   const nameInput = document.createElement("input");
   nameInput.classList.add("name-input");
   nameInput.id = stopwatch.id;
   nameInput.value = stopwatch.name;
   nameInput.oninput = onNameInput;
-  div.appendChild(nameInput);
+  topRow.appendChild(nameInput);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "X";
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.id = stopwatch.id;
+  deleteBtn.onclick = onDelete;
+  topRow.appendChild(deleteBtn);
 
   const contentDiv = document.createElement("div");
   contentDiv.classList.add("content");
