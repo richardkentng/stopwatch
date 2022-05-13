@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 :root {
-  --dark-text: rgb(45, 54, 55);
+  --dark-text: rgb(38, 44, 46);
 }
 
 * {
@@ -42,26 +42,37 @@ button:hover {
   background-color: #eee;
   border: solid black 1px;
   border-radius: 0.3em;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.2);
   margin: 0.2em;
 }
 
-.stopwatch > .delete-btn {
+.stopwatch > .top-row {
+  display: flex;
+  background-color: rgb(83, 99, 100);
+}
+
+.stopwatch > .top-row > .name-input {
+  color: white;
+  font-size: 0.9em;
+  text-align: center;
+  background-color: inherit;
+  border: none;
+}
+
+.stopwatch > .top-row > .delete-btn {
+  color: white;
   background-color: inherit;
   border: none;
   display: block;
   margin-left: auto;
 }
-
-.stopwatch > .name-input {
-  color: #777;
-  text-align: center;
-  font-size: 0.9em;
-  background-color: #ddd;
-  border: none;
+.stopwatch > .top-row > .delete-btn:hover {
+  color: black;
+  background-color: white;
 }
 
 .stopwatch > .content {
-  padding: 0 0.6em 0.6em 0.6em;
+  padding: 0.3em 0.6em 0.6em 0.6em;
 }
 
 hr {
