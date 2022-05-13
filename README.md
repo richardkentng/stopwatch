@@ -1,6 +1,6 @@
 # [Stopwatches](https://stopwatches.netlify.app/)
 
-![thumbnail](./github_images/v7.png)
+![thumbnail](./github_images/v8.png)
 
 ## Description
 
@@ -80,3 +80,7 @@ A stopwatch needs certain variables to work with...
 ![version 7](./github_images/v7.png)
 
 - changed display format for increased readability
+
+![version 8](./github_images/v8.png)
+
+- restyled: name-input and delete-btn is separate from body, like a typical file explorer window
