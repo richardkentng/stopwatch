@@ -36,6 +36,7 @@ function onAdd() {
   setStopwatches(stopwatches);
 
   constructStopwatch({ ...stopwatches[id], id }); //create html for stopwatch
+  elements[id].toggleBtn.click(); //start stopwatch
 }
 
 function constructStopwatch(stopwatch) {
