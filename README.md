@@ -44,6 +44,7 @@ A stopwatch needs certain variables to work with...
 - [x] a user can give each stopwatch a name
 - [ ] a user can check a box to see milliseconds (eg. 56.4s instead of 56s)
 - [ ] a user can click a drag a stopwatch to reorder it
+- [ ] make running stopwatches brighter than paused stopwatches
 
 ## Thoughts
 
