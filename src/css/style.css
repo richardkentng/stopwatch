@@ -10,19 +10,15 @@
   padding: 0;
 }
 
-h1 {
-  color: var(--dark-text);
-  margin-bottom: 1rem;
-}
-
 body {
   font-family: "Poppins", sans-serif;
   background-color: rgb(127, 148, 150);
   padding: 2rem;
 }
 
-button {
-  background-color: #ddd;
+/* BUTTON AND INPUT >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+button,
+input {
   padding: 0.2em 0.4em;
   border: solid black 1px;
   border-radius: 0.2em;
@@ -30,12 +26,92 @@ button {
 button:hover {
   filter: brightness(0.95);
 }
+input {
+  letter-spacing: 0.03em;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTON AND INPUT */
 
-.add-btn {
-  background-color: #fff;
+h1 {
+  color: var(--dark-text);
   margin-bottom: 1rem;
 }
 
+/* ---------------------------------------------------------- 
+                >>>   .ADD-STOPWATCH-FORM  
+ ---------------------------------------------------------- */
+.add-stopwatch-form {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+/* BUTTONS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.add-stopwatch-form button {
+  background-color: #fff;
+  padding: 0.5em;
+  z-index: 1;
+}
+
+.add-stopwatch-form .buttons {
+  display: flex;
+}
+
+/* SEAMLESSLY CONNECT TWO BUTTONS >>> */
+.add-stopwatch-form .add-btn {
+  border-right-color: gray;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.add-stopwatch-form .expand-btn {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* <<< */
+
+.add-stopwatch-form .expand-btn .bi-three-dots {
+  display: none;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTONS */
+/* FORM-CONTROLS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.add-stopwatch-form .form-controls {
+  background-color: rgb(180, 199, 197);
+  padding: 30px 0.6em 0.6em 0.6em;
+  margin: -15px 0 0 20px;
+  border-radius: 0.2em;
+}
+.add-stopwatch-form .form-controls .input-pair {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.add-stopwatch-form .form-controls .name-input {
+  font-size: 0.9em;
+  text-align: center;
+  color: white;
+  background-color: rgb(120, 145, 142);
+  border: none;
+  margin-bottom: 0.5em;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< FORM-CONTROLS */
+/* HIDE TARGETS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* (When a parent has a class of '.hide-targets', 
+any child with '.target' will not be displayed.  
+'.hide-targets' is toggled via javascript to 
+hide/unhide items.) */
+.hide-targets .target {
+  display: none;
+}
+.add-stopwatch-form.hide-targets {
+  padding: 0;
+}
+.add-stopwatch-form.hide-targets .bi-three-dots {
+  display: inline-block;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HIDE TARGETS */
+/* ---------------------------------------------------------- 
+                  .ADD-STOPWATCH-FORM  <<<
+ ---------------------------------------------------------- */
+/* ---------------------------------------------------------- 
+                    >>>    .STOPWATCH
+ ---------------------------------------------------------- */
 .stopwatch {
   display: inline-block;
   text-align: left;
@@ -74,6 +150,13 @@ button:hover {
 .stopwatch > .content {
   padding: 0.3em 0.6em 0.6em 0.6em;
 }
+
+.stopwatch button {
+  background-color: #ddd;
+}
+/* ---------------------------------------------------------- 
+                        .STOPWATCH <<<
+ ---------------------------------------------------------- */
 
 hr {
   border: none;
