@@ -1,42 +1,57 @@
-const addBtn = document.body.querySelector(".add-btn");
-addBtn.onclick = onAdd;
-
 const elements = {}; //stores three elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput}, ...}
 let sw = null; //sw stands for the stopwatch that is focused ('focus' as defined here, occurs when any button on a stopwatch is clicked)
 let el = null; //el stands for the elements that are focused (consists of elements: displayEl and toggleBtn)
+const addForm = document.body.querySelector(".add-stopwatch-form");
+const LS = localStorage;
 
-const defaultStopwatch = {
-  intervalId: null,
-  startTime: null,
-  pauseTime: null,
-  elapsedPauseTime: 0,
-  name: "",
+//=========================================================
+//                     EVENT LISTENERS
+addForm.onsubmit = onSubmit_addStopwatch;
+addForm.expandBtn.onclick = () => {
+  const showedForm = !addForm.classList.toggle("hide-targets");
+  LS.setItem("showAddStopwatchForm", showedForm ? "1" : "0");
 };
+addForm.autoStartCb.onchange = function () {
+  LS.setItem("autoStartAddedStopwatch", this.checked ? "1" : "0");
+};
+//=========================================================
+//                    LOAD LOCAL STORAGE
 
-const stopwatches = getStopwatches();
-//if stopwatch data is detected in local storage
-if (Object.keys(stopwatches).length) {
-  //construct stopwatch html from data
-  for (let id in stopwatches) {
-    constructStopwatch({ ...stopwatches[id], id });
-    //Display the elapsed time once, or continuously update it
-    updateTimeOrStartInterval(id);
-  }
-} else {
-  //add one stopwatch
-  addBtn.click();
+//load checkbox status of input.auto-start
+if ("01".includes(LS.autoStartAddedStopwatch)) {
+  addForm.autoStartCb.checked = parseInt(LS.autoStartAddedStopwatch);
+}
+//load display status of .add-stopwatch-form
+if ("01".includes(LS.showAddStopwatchForm)) {
+  const addOrRemove = parseInt(LS.showAddStopwatchForm) ? "remove" : "add";
+  addForm.classList[addOrRemove]("hide-targets");
 }
 
-function onAdd() {
+loadStopwatches();
+
+function loadStopwatches() {
+  const stopwatches = getStopwatches();
+  if (Object.keys(stopwatches).length) {
+    for (let id in stopwatches) {
+      constructStopwatch({ ...stopwatches[id], id });
+      updateTimeOrStartInterval(id);
+    }
+  }
+}
+//=========================================================
+
+function onSubmit_addStopwatch(e) {
+  e.preventDefault();
   const id = generateId();
 
   //create and save a stopwatch to local storage
   const stopwatches = getStopwatches();
-  stopwatches[id] = defaultStopwatch;
+  stopwatches[id] = { ...getDefaultStopwatch(), name: this.nameInput.value };
   setStopwatches(stopwatches);
 
-  constructStopwatch({ ...stopwatches[id], id }); //create html for stopwatch
-  elements[id].toggleBtn.click(); //start stopwatch
+  constructStopwatch({ ...stopwatches[id], id }); //create stopatch HTML
+  if (this.autoStartCb.checked) elements[id].toggleBtn.click(); //conditionally start stopwatch
+  this.nameInput.value = ""; //reset .name-input
 }
 
 function constructStopwatch(stopwatch) {
@@ -69,7 +84,7 @@ function constructStopwatch(stopwatch) {
   div.appendChild(contentDiv);
 
   const displayEl = document.createElement("p");
-  displayEl.textContent = "n/a";
+  displayEl.textContent = "";
   contentDiv.appendChild(displayEl);
 
   const toggleBtn = document.createElement("button");
@@ -106,8 +121,8 @@ function onStart() {
     sw.elapsedPauseTime += Date.now() - sw.pauseTime;
     sw.pauseTime = null;
   }
-  updateDisplayWithElapsedTime(); //this will immediately update displayed elapsed time instead of waiting for interval to start. <--benefits noticeable when a stopwatch displaying 'n/a', upon being started, immediately displays '0s'
-  const { displayEl, startTime, elapsedPauseTime } = { ...sw, ...el }; //this prevents the setInterval from focusing the wrong stopwatch when the global variables 'sw' and 'el' are overwritten
+  updateDisplayWithElapsedTime(); //this will immediately update displayed elapsed time instead of waiting for interval to start. <--benefits noticeable when a stopwatch displaying '', upon being started, immediately displays '0s'
+  const { displayEl, startTime, elapsedPauseTime } = { ...sw, ...el }; //this prevents the setInterval from focusing the wrong stopwatch data and elements when the global variables 'sw' and 'el' are overwritten
   sw.intervalId = setInterval(
     () =>
       updateDisplayWithElapsedTime({
@@ -131,9 +146,9 @@ function onStop() {
 function onReset() {
   focusStopwatch(this.id);
   clearInterval(sw.intervalId);
-  sw = { ...defaultStopwatch, name: el.nameInput.value };
+  sw = { ...getDefaultStopwatch(), name: el.nameInput.value };
   el.toggleBtn.onclick = onStart;
-  el.displayEl.textContent = "n/a";
+  el.displayEl.textContent = "";
   updateStopwatch(this.id);
 }
 
@@ -191,13 +206,23 @@ function focusStopwatch(id) {
   el = elements[id];
 }
 
+function getDefaultStopwatch() {
+  return {
+    intervalId: null,
+    startTime: null,
+    pauseTime: null,
+    elapsedPauseTime: 0,
+    name: "",
+  };
+}
+
 // LOCAL STORAGE FUNCTIONS
 
 function getStopwatches() {
-  return JSON.parse(localStorage.getItem("stopwatches")) || {};
+  return JSON.parse(LS.getItem("stopwatches")) || {};
 }
 function setStopwatches(stopwatches) {
-  localStorage.setItem("stopwatches", JSON.stringify(stopwatches));
+  LS.setItem("stopwatches", JSON.stringify(stopwatches));
 }
 function updateStopwatch(id) {
   const stopwatches = getStopwatches();
