@@ -55,6 +55,10 @@ h1 {
   z-index: 1;
 }
 
+.add-stopwatch-form .buttons .add-btn {
+  color: black !important;
+}
+
 /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
 .add-stopwatch-form .buttons .add-btn {
   border-right-color: gray;
