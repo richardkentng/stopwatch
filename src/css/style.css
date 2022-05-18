@@ -56,7 +56,7 @@ h1 {
 }
 
 .add-stopwatch-form .buttons .add-btn {
-  color: black !important;
+  color: black;
 }
 
 /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
