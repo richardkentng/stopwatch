@@ -12,6 +12,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  color: black;
   background-color: rgb(127, 148, 150);
   padding: 2rem;
 }
@@ -52,10 +53,6 @@ h1 {
   background-color: #fff;
   padding: 0.5em;
   z-index: 1;
-}
-
-.add-stopwatch-form .buttons .add-btn {
-  width: fit-content;
 }
 
 /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
