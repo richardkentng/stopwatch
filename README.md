@@ -46,10 +46,19 @@ A stopwatch needs certain variables to work with...
 - [ ] a user can click a drag a stopwatch to reorder it
 - [ ] make running stopwatches brighter than paused stopwatches
 
+## Problems
+
+<img src="https://user-images.githubusercontent.com/77288642/168978674-7f5c7762-36c2-4ca5-91bc-de17b0f5ab92.jpg" width="200">
+
+### Blank Button (Mobile Device) SOLVED
+
+The button appears blank when accessed from my iPhone 12 mini, on Safari and Chrome.
+FIX: added `color: black` to .add-btn
+
 ## Thoughts
 
-- More Comfortable Using Git
-  - I enjoyed creating new branches before working on new features. This way, if my implementation of the feature is a mess, then I can simply delete the feature branch, and still have the main branch untouched. After all, the main branch should be reserved for tested code that is ready for deployment.
+- Increased Comfort Using Git
+  - I enjoyed creating new branches before working on new features. This way, if my implementation of a feature fails, then I can simply delete the feature branch, leaving the other branches untouched.
 
 ## Evolution
 
