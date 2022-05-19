@@ -1,6 +1,6 @@
 # [Stopwatches](https://stopwatches.netlify.app/)
 
-![thumbnail](./github_images/v9.png)
+![thumbnail](./github_images/versions/v10.png)
 
 ## Description
 
@@ -62,39 +62,43 @@ FIX: added `color: black` to .add-btn
 
 ## Evolution
 
-![version 1](./github_images/v1.png)
+![version 1](./github_images/versions/v1.png)
 
 - single stopwatch
 - hard-coded HTML
 
-![version 2](./github_images/v2.png)
+![version 2](./github_images/versions/v2.png)
 
 - dynamically generated HTML based on array of stopwatch objects
 
-![version 3](./github_images/v3.png)
+![version 3](./github_images/versions/v3.png)
 
 - click to create desired amount of stopwatches
 
-![version 4](./github_images/v4.png)
+![version 4](./github_images/versions/v4.png)
 
 - restyled
 
-![version 5](./github_images/v5.png)
+![version 5](./github_images/versions/v5.png)
 
 - adds X button to delete a stopwatch
 
-![version 6](./github_images/v6.png)
+![version 6](./github_images/versions/v6.png)
 
 - name-able stopwatches
 
-![version 7](./github_images/v7.png)
+![version 7](./github_images/versions/v7.png)
 
 - changed display format for increased readability
 
-![version 8](./github_images/v8.png)
+![version 8](./github_images/versions/v8.png)
 
 - restyled: name-input and delete-btn is separate from body, like a typical file explorer window
 
-![version 9](./github_images/v9.png)
+![version 9](./github_images/versions/v9.png)
 
 - adds add-stopwatch options
+
+![version 10](./github_images/versions/v10.png)
+
+- uses bootstrap icons
