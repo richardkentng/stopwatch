@@ -1,4 +1,4 @@
-const elements = {}; //stores three elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput}, ...}
+const elements = {}; //stores four elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput, stopwatch}, ...}
 let sw = null; //sw stands for the stopwatch that is focused ('focus' as defined here, occurs when any button on a stopwatch is clicked)
 let el = null; //el stands for the elements that are focused (consists of elements: displayEl and toggleBtn)
 const addForm = document.body.querySelector(".add-stopwatch-form");
@@ -83,23 +83,28 @@ function constructStopwatch(stopwatch) {
   contentDiv.classList.add("content");
   div.appendChild(contentDiv);
 
-  const displayEl = document.createElement("p");
-  displayEl.textContent = "";
-  contentDiv.appendChild(displayEl);
-
   const toggleBtn = document.createElement("button");
-  toggleBtn.textContent = "start / stop";
   toggleBtn.id = stopwatch.id;
   toggleBtn.onclick = onStart;
+  const play = document.createElement("i");
+  play.classList.add("bi-play-fill");
+  const pause = document.createElement("i");
+  pause.classList.add("bi-pause-fill", "display-none");
+  toggleBtn.appendChild(play);
+  toggleBtn.appendChild(pause);
   contentDiv.appendChild(toggleBtn);
 
+  const displayEl = document.createElement("span");
+  displayEl.classList.add("elapsed-time");
+  contentDiv.appendChild(displayEl);
+
   const resetBtn = document.createElement("button");
-  resetBtn.textContent = "reset";
+  resetBtn.classList.add("bi-backspace");
   resetBtn.id = stopwatch.id;
   resetBtn.onclick = onReset;
   contentDiv.appendChild(resetBtn);
 
-  elements[stopwatch.id] = { displayEl, toggleBtn, nameInput };
+  elements[stopwatch.id] = { displayEl, toggleBtn, nameInput, stopwatch: div };
 }
 
 function updateTimeOrStartInterval(id) {
@@ -133,6 +138,7 @@ function onStart() {
     1000
   );
   updateStopwatch(this.id);
+  el.stopwatch.classList.add("playing");
 }
 
 function onStop() {
@@ -141,6 +147,7 @@ function onStop() {
   el.toggleBtn.onclick = onStart;
   sw.pauseTime = Date.now();
   updateStopwatch(this.id);
+  el.stopwatch.classList.remove("playing");
 }
 
 function onReset() {
@@ -150,6 +157,7 @@ function onReset() {
   el.toggleBtn.onclick = onStart;
   el.displayEl.textContent = "";
   updateStopwatch(this.id);
+  el.stopwatch.classList.remove("playing");
 }
 
 function onDelete() {
