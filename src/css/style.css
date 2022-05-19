@@ -25,7 +25,7 @@ input {
   border-radius: 0.2em;
 }
 button:hover {
-  filter: brightness(0.95);
+  filter: brightness(0.9);
 }
 input {
   letter-spacing: 0.03em;
@@ -45,19 +45,29 @@ h1 {
   margin-bottom: 1rem;
 }
 /* BUTTONS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.add-stopwatch-form .buttons button {
+  background-color: #fff;
+  padding: 0.3em;
+  z-index: 1;
+}
+
 .add-stopwatch-form .buttons {
   display: flex;
 }
 
-.add-stopwatch-form .buttons button {
-  background-color: #fff;
-  padding: 0.5em;
-  z-index: 1;
+.add-stopwatch-form .buttons .add-btn {
+  font-size: 2rem;
 }
 
-.add-stopwatch-form .buttons .add-btn {
-  color: black;
+/* closes distance between plus icon and stopwatch icon >>> */
+.is {
+  display: flex;
 }
+.is :first-child {
+  margin-right: -0.12em;
+}
+/* <<< closes distance between plus icon and stopwatch icon */
 
 /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
 .add-stopwatch-form .buttons .add-btn {
@@ -70,7 +80,7 @@ h1 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* <<< */
+/* <<< SEAMLESSLY CONNECT TWO BUTTONS */
 
 .add-stopwatch-form .expand-btn .bi-three-dots {
   display: none;
@@ -79,8 +89,8 @@ h1 {
 /* FORM-CONTROLS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .add-stopwatch-form .form-controls {
   background-color: rgb(180, 199, 197);
-  padding: 30px 0.6em 0.6em 0.6em;
-  margin: -15px 0 0 20px;
+  padding: 45px 0.6em 0.6em 0.6em;
+  margin: -30px 0 0 20px;
   border-radius: 0.2em;
 }
 .add-stopwatch-form .form-controls .input-pair {
@@ -120,12 +130,24 @@ hide/unhide items.) */
 .stopwatch {
   display: inline-block;
   text-align: left;
-  background-color: #eee;
+  background-color: rgba(255, 255, 255, 0.5);
   border: solid black 1px;
   border-radius: 0.3em;
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.2);
   margin: 0.2em;
 }
+
+/* .playing >>>>>>>>>>>>>>>>>>>>>> */
+.stopwatch.playing {
+  background-color: #eee;
+}
+.stopwatch.playing .bi-play-fill {
+  display: none;
+}
+.stopwatch.playing .bi-pause-fill {
+  display: inline-block;
+}
+/* <<<<<<<<<<<<<<<<<<<<<< .playing */
 
 .stopwatch > .top-row {
   display: flex;
@@ -152,6 +174,10 @@ hide/unhide items.) */
   background-color: white;
 }
 
+.stopwatch .elapsed-time {
+  margin: auto 0.5em;
+}
+
 .stopwatch > .content {
   padding: 0.3em 0.6em 0.6em 0.6em;
 }
@@ -176,4 +202,10 @@ hr {
 }
 .github-link:hover {
   text-decoration: underline;
+}
+
+/* UTILITY */
+
+.display-none {
+  display: none;
 }
