@@ -42,9 +42,11 @@ A stopwatch needs certain variables to work with...
 - [x] a user can refresh the page and still see stopwatches (local storage)
 - [x] a user can delete stopwatches
 - [x] a user can give each stopwatch a name
+- [x] make running stopwatches brighter than paused stopwatches
+- [ ] hide reset button when there is nothing to reset (eg. when reset has already been pressed, or when a stopwatch is created but not started)
+- [ ] refactor code to remove unnecessary variables
 - [ ] a user can check a box to see milliseconds (eg. 56.4s instead of 56s)
 - [ ] a user can click a drag a stopwatch to reorder it
-- [ ] make running stopwatches brighter than paused stopwatches
 
 ## Problems
 
