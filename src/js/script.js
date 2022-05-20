@@ -1,4 +1,4 @@
-const elements = {}; //stores four elements per stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput, stopwatch}, ...}
+const elements = {}; //stores elements associated with each stopwatch.  eg {a2398498595: {displayEl, toggleBtn, nameInput, resetBtn, stopwatch}, ...}
 let sw = null; //sw stands for the stopwatch that is focused ('focus' as defined here, occurs when any button on a stopwatch is clicked)
 let el = null; //el stands for the elements that are focused (consists of elements: displayEl and toggleBtn)
 const addForm = document.body.querySelector(".add-stopwatch-form");
@@ -99,12 +99,18 @@ function constructStopwatch(stopwatch) {
   contentDiv.appendChild(displayEl);
 
   const resetBtn = document.createElement("button");
-  resetBtn.classList.add("bi-backspace");
+  resetBtn.classList.add("bi-backspace", "display-none");
   resetBtn.id = stopwatch.id;
   resetBtn.onclick = onReset;
   contentDiv.appendChild(resetBtn);
 
-  elements[stopwatch.id] = { displayEl, toggleBtn, nameInput, stopwatch: div };
+  elements[stopwatch.id] = {
+    displayEl,
+    toggleBtn,
+    nameInput,
+    resetBtn,
+    stopwatch: div,
+  };
 }
 
 function updateTimeOrStartInterval(id) {
@@ -121,6 +127,8 @@ function updateTimeOrStartInterval(id) {
 function onStart() {
   focusStopwatch(this.id);
   el.toggleBtn.onclick = onStop;
+  el.resetBtn.classList.remove("display-none"); //show resetBtn
+
   if (sw.startTime === null) sw.startTime = Date.now();
   if (sw.pauseTime) {
     sw.elapsedPauseTime += Date.now() - sw.pauseTime;
@@ -157,6 +165,7 @@ function onReset() {
   el.toggleBtn.onclick = onStart;
   el.displayEl.textContent = "";
   updateStopwatch(this.id);
+  el.resetBtn.classList.add("display-none"); //hide resetBtn
   el.stopwatch.classList.remove("playing");
 }
 
