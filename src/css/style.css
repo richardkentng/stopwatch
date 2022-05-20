@@ -128,6 +128,7 @@ hide/unhide items.) */
                     >>>    .STOPWATCH
  ---------------------------------------------------------- */
 .stopwatch {
+  width: 200px;
   display: inline-block;
   text-align: left;
   background-color: rgba(255, 255, 255, 0.5);
