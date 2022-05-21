@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+$dark-text: rgb(38, 44, 46);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: black;
+  background-color: rgb(127, 148, 150);
+  padding: 2rem;
+}
+
+/* BUTTON AND INPUT >>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+button,
+input {
+  padding: 0.2em 0.4em;
+  border: solid black 1px;
+  border-radius: 0.2em;
+}
+button:hover {
+  filter: brightness(0.9);
+}
+input {
+  letter-spacing: 0.03em;
+}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTON AND INPUT */
+
+h1 {
+  color: $dark-text;
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------------------------------------- 
+                >>>   .ADD-STOPWATCH-FORM  
+ ---------------------------------------------------------- */
+
+.add-stopwatch-form {
+  display: inline-block;
+  margin-bottom: 1rem;
+
+  // .buttons >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  .buttons {
+    display: flex;
+    .add-btn,
+    .expand-btn {
+      background-color: #fff;
+      padding: 0.3em;
+      z-index: 1;
+    }
+    .add-btn {
+      font-size: 2rem;
+      .is {
+        // closes distance between plus icon and stopwatch icon
+        display: flex;
+        & :first-child {
+          margin-right: -0.12em;
+        }
+      }
+    }
+    .expand-btn .bi-three-dots {
+      display: none;
+    }
+    /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
+    .add-btn {
+      border-right-color: gray;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .expand-btn {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    /* <<< SEAMLESSLY CONNECT TWO BUTTONS */
+  }
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< .buttons
+  // .form-controls >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  .form-controls {
+    background-color: rgb(180, 199, 197);
+    padding: 45px 0.6em 0.6em 0.6em;
+    margin: -30px 0 0 20px;
+    border-radius: 0.2em;
+    .input-pair {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .name-input {
+      font-size: 0.9em;
+      text-align: center;
+      color: white;
+      background-color: rgb(120, 145, 142);
+      border: none;
+      margin-bottom: 0.5em;
+    }
+  }
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< .form-controls
+  &.hide-targets {
+    padding: 0;
+    .bi-three-dots {
+      display: inline-block !important;
+    }
+  }
+}
+/* ---------------------------------------------------------- 
+                  .ADD-STOPWATCH-FORM  <<<
+ ---------------------------------------------------------- */
+/* ---------------------------------------------------------- 
+                    >>>    .STOPWATCH
+ ---------------------------------------------------------- */
+.stopwatch {
+  width: 200px;
+  display: inline-block;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: solid black 1px;
+  border-radius: 0.3em;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.2);
+  margin: 0.2em;
+  button {
+    background-color: #ddd;
+  }
+  .top-row {
+    display: flex;
+    background-color: rgb(83, 99, 100);
+    .name-input {
+      color: white;
+      font-size: 0.9em;
+      text-align: center;
+      background-color: inherit;
+      border: none;
+    }
+    .delete-btn {
+      color: white;
+      background-color: inherit;
+      border: none;
+      display: block;
+      margin-left: auto;
+      &:hover {
+        color: black;
+        background-color: white;
+      }
+    }
+  }
+  .content {
+    padding: 0.3em 0.6em 0.6em 0.6em;
+    .elapsed-time {
+      margin: auto 0.5em;
+    }
+  }
+  &.playing {
+    background-color: #eee;
+    .bi-play-fill {
+      display: none;
+    }
+    .bi-pause-fill {
+      display: inline-block;
+    }
+  }
+}
+/* ---------------------------------------------------------- 
+                        .STOPWATCH <<<
+ ---------------------------------------------------------- */
+
+hr {
+  border: none;
+  border-bottom: solid 1px $dark-text;
+  margin-top: 1rem;
+}
+
+.github-link {
+  color: $dark-text;
+  font-size: 0.8rem;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* UTILITY */
+
+.display-none {
+  display: none;
+}
+
+.hide-targets .target {
+  display: none;
+}

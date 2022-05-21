@@ -1,9 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
-:root {
-  --dark-text: rgb(38, 44, 46);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,7 +8,7 @@
 body {
   font-family: "Poppins", sans-serif;
   color: black;
-  background-color: rgb(127, 148, 150);
+  background-color: #7f9496;
   padding: 2rem;
 }
 
@@ -24,16 +19,18 @@ input {
   border: solid black 1px;
   border-radius: 0.2em;
 }
+
 button:hover {
   filter: brightness(0.9);
 }
+
 input {
   letter-spacing: 0.03em;
 }
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTON AND INPUT */
 
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTON AND INPUT */
 h1 {
-  color: var(--dark-text);
+  color: #262c2e;
   margin-bottom: 1rem;
 }
 
@@ -44,32 +41,29 @@ h1 {
   display: inline-block;
   margin-bottom: 1rem;
 }
-/* BUTTONS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
-.add-stopwatch-form .buttons button {
+.add-stopwatch-form .buttons {
+  display: flex;
+  /* SEAMLESSLY CONNECT TWO BUTTONS >>> */
+  /* <<< SEAMLESSLY CONNECT TWO BUTTONS */
+}
+.add-stopwatch-form .buttons .add-btn,
+.add-stopwatch-form .buttons .expand-btn {
   background-color: #fff;
   padding: 0.3em;
   z-index: 1;
 }
-
-.add-stopwatch-form .buttons {
-  display: flex;
-}
-
 .add-stopwatch-form .buttons .add-btn {
   font-size: 2rem;
 }
-
-/* closes distance between plus icon and stopwatch icon >>> */
-.is {
+.add-stopwatch-form .buttons .add-btn .is {
   display: flex;
 }
-.is :first-child {
+.add-stopwatch-form .buttons .add-btn .is :first-child {
   margin-right: -0.12em;
 }
-/* <<< closes distance between plus icon and stopwatch icon */
-
-/* SEAMLESSLY CONNECT TWO BUTTONS >>> */
+.add-stopwatch-form .buttons .expand-btn .bi-three-dots {
+  display: none;
+}
 .add-stopwatch-form .buttons .add-btn {
   border-right-color: gray;
   border-top-right-radius: 0;
@@ -80,15 +74,8 @@ h1 {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* <<< SEAMLESSLY CONNECT TWO BUTTONS */
-
-.add-stopwatch-form .expand-btn .bi-three-dots {
-  display: none;
-}
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< BUTTONS */
-/* FORM-CONTROLS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 .add-stopwatch-form .form-controls {
-  background-color: rgb(180, 199, 197);
+  background-color: #b4c7c5;
   padding: 45px 0.6em 0.6em 0.6em;
   margin: -30px 0 0 20px;
   border-radius: 0.2em;
@@ -101,26 +88,17 @@ h1 {
   font-size: 0.9em;
   text-align: center;
   color: white;
-  background-color: rgb(120, 145, 142);
+  background-color: #78918e;
   border: none;
   margin-bottom: 0.5em;
-}
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<< FORM-CONTROLS */
-/* HIDE TARGETS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-/* (When a parent has a class of '.hide-targets', 
-any child with '.target' will not be displayed.  
-'.hide-targets' is toggled via javascript to 
-hide/unhide items.) */
-.hide-targets .target {
-  display: none;
 }
 .add-stopwatch-form.hide-targets {
   padding: 0;
 }
 .add-stopwatch-form.hide-targets .bi-three-dots {
-  display: inline-block;
+  display: inline-block !important;
 }
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< HIDE TARGETS */
+
 /* ---------------------------------------------------------- 
                   .ADD-STOPWATCH-FORM  <<<
  ---------------------------------------------------------- */
@@ -137,8 +115,37 @@ hide/unhide items.) */
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.2);
   margin: 0.2em;
 }
-
-/* .playing >>>>>>>>>>>>>>>>>>>>>> */
+.stopwatch button {
+  background-color: #ddd;
+}
+.stopwatch .top-row {
+  display: flex;
+  background-color: #536364;
+}
+.stopwatch .top-row .name-input {
+  color: white;
+  font-size: 0.9em;
+  text-align: center;
+  background-color: inherit;
+  border: none;
+}
+.stopwatch .top-row .delete-btn {
+  color: white;
+  background-color: inherit;
+  border: none;
+  display: block;
+  margin-left: auto;
+}
+.stopwatch .top-row .delete-btn:hover {
+  color: black;
+  background-color: white;
+}
+.stopwatch .content {
+  padding: 0.3em 0.6em 0.6em 0.6em;
+}
+.stopwatch .content .elapsed-time {
+  margin: auto 0.5em;
+}
 .stopwatch.playing {
   background-color: #eee;
 }
@@ -148,56 +155,18 @@ hide/unhide items.) */
 .stopwatch.playing .bi-pause-fill {
   display: inline-block;
 }
-/* <<<<<<<<<<<<<<<<<<<<<< .playing */
 
-.stopwatch > .top-row {
-  display: flex;
-  background-color: rgb(83, 99, 100);
-}
-
-.stopwatch > .top-row > .name-input {
-  color: white;
-  font-size: 0.9em;
-  text-align: center;
-  background-color: inherit;
-  border: none;
-}
-
-.stopwatch > .top-row > .delete-btn {
-  color: white;
-  background-color: inherit;
-  border: none;
-  display: block;
-  margin-left: auto;
-}
-.stopwatch > .top-row > .delete-btn:hover {
-  color: black;
-  background-color: white;
-}
-
-.stopwatch .elapsed-time {
-  margin: auto 0.5em;
-}
-
-.stopwatch > .content {
-  padding: 0.3em 0.6em 0.6em 0.6em;
-}
-
-.stopwatch button {
-  background-color: #ddd;
-}
 /* ---------------------------------------------------------- 
                         .STOPWATCH <<<
  ---------------------------------------------------------- */
-
 hr {
   border: none;
-  border-bottom: solid 1px var(--dark-text);
+  border-bottom: solid 1px #262c2e;
   margin-top: 1rem;
 }
 
 .github-link {
-  color: var(--dark-text);
+  color: #262c2e;
   font-size: 0.8rem;
   text-decoration: none;
 }
@@ -206,7 +175,12 @@ hr {
 }
 
 /* UTILITY */
-
 .display-none {
   display: none;
 }
+
+.hide-targets .target {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */
