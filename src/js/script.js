@@ -51,7 +51,11 @@ function onSubmit_addStopwatch(e) {
 
   constructStopwatch({ ...stopwatches[id], id }); //create stopatch HTML
   if (this.autoStartCb.checked) elements[id].toggleBtn.click(); //conditionally start stopwatch
-  this.nameInput.value = ""; //reset .name-input
+
+  //if no name was provided upon stopwatch creation, then focus .name-input of newly created stopwatch element
+  if (!this.nameInput.value.trim()) elements[id].nameInput.focus();
+
+  this.nameInput.value = ""; //clear field labeled 'name' for .add-stopwatch-form
 }
 
 function constructStopwatch(stopwatch) {
